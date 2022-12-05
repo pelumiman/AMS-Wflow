@@ -9,6 +9,6 @@ RUN pip install -r requirements.txt
 ENV YOUR_NAME=pelumi
 # Expose the correct port
 EXPOSE 5500
-# Create an entrypoint
+# Create an entypoint
 ENTRYPOINT ["python", "app.py"]
 
