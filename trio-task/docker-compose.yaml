@@ -16,6 +16,6 @@ services:
     - type: bind
       source: ./nginx/nginx.conf
       target: /etc/nginx/nginx.conf
-  db:
+  mysql:
     build: ./db
     image: mysql:5.7
