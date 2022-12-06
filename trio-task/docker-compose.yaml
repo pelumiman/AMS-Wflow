@@ -1,11 +1,5 @@
 version: "3.8"
 services:
-  mysql:
-    build: ./db
-    ports:
-    - target: 3306
-      published: 3306
-      protocol: tcp
   flask-app:
     build: ./flask-app
     ports:
@@ -22,3 +16,6 @@ services:
     - type: bind
       source: ./nginx/nginx.conf
       target: /etc/nginx/nginx.conf
+  db:
+    build: ./db
+    image: mysql:5.7
