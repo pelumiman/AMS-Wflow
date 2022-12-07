@@ -3,7 +3,8 @@ pipeline{
         stages{
             stage('clone http'){
                 steps{
-                    //sh "git clone https://gitlab.com/qacdevops/chaperootodo_client.git"
+                    sh "rm -rf https://gitlab.com/qacdevops/chaperootodo_client.git"
+                    sh "git clone https://gitlab.com/qacdevops/chaperootodo_client.git"
                 }
             }
             stage('Install Docker and Docker-Compose'){
