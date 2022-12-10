@@ -1,28 +1,29 @@
-pipeline{
-        agent any
+pipeline {
+    agent any
         environment {
-            DB_PASSWORD="password"
-        }
-        stages{
-            stage('clone http'){
-                steps{
-                    sh "rm -rf https://gitlab.com/qacdevops/chaperootodo_client.git"
-                    sh "git clone https://gitlab.com/qacdevops/chaperootodo_client.git"
-                }
-            }
-            stage('Install Docker and Docker-Compose'){
-                steps{
-                    sh "sudo apt-get update"
-                    sh "sudo apt install -y curl jq "
-                    sh "curl https://get.docker.com | sudo bash"
-                    sh 'sudo curl -L "https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
-                    sh "sudo chmod +x /usr/local/bin/docker-compose"    
-                }
-            }
-            stage('Deploy Application'){
-                steps{
-                    sh 'sudo docker-compose -f chaperootodo_client/docker-compose.yaml pull && sudo -E DB_PASSWORD=${DB_PASSWORD} docker-compose -f chaperootodo_client/docker-compose.yaml up -d'
-                }
+        DB_PASSWORD = credentials('DATABASE_PASSWORD')
+  n }
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://gitlab.com/qacdevops/chaperootodo_client.git'
             }
         }
+        stage('Install Docker') {
+            //I'm skipping the deploy docker as I manuall installed it 
+            //and it doesn't need to happen on ever build in my environment
+            steps {
+            echo 'Nothing to Do'
+            echo 'Insert the install steps here'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                withCredentials([string(credentialsId: 'DATABASE_PASSWORD', variable: 'DB_PASSWORD')]) {
+                    sh '''docker-compose pull
+                    docker-compose up -d'''
+                }
+            }
+        }
+    }
 }
