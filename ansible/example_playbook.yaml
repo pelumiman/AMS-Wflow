@@ -7,10 +7,9 @@
       name: nginx
       state: present
       update_cache: true
-  - name: Copy nginx file over
+  - name: show nginx file info
     debug:
-      msg: "Copying nginx file {{ nginx.conf }}"
-
+      msg: "{{ nginx.conf }}"
   - name: Copy nginx file over
     copy:
       src: nginx.conf
