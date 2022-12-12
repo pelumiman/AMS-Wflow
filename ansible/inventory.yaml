@@ -2,8 +2,8 @@ all:
   children:
     test:
       hosts:
-        ip-172-31-44-165.eu-west-2.compute.internal:
-        ip-172-31-44-165.eu-west-2.compute.internal:
+        172.31.43.48:
+        172.31.44.165:
       vars:
         ansible_user: ubuntu
         ansible_ssh_private_key_file: '~/.ssh/ansible_id_rsa'
