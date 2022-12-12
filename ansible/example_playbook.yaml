@@ -18,8 +18,6 @@
       src: nginx.conf
       dest: /etc/nginx/nginx.conf
     register: nginx_config
-    assert:
-      that: path_before != path_after
 
   - name: Restart nginx if needed
     service:
