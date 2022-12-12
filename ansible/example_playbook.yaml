@@ -1,34 +1,9 @@
-- hosts: 127.0.0.1
+- hosts: localhost
+  connection: local
   become: true
   tasks:
-  - name: Run uname -q like an idiot
-    command: 'uname -a'
-    ignore_errors: true
-  - name: make a directory
-    command: 'mkdir /leondir'
-    register: makeadirvar
-    failed_when: "makeadirvar.rc > 1"
-  - name: the ansible way of doing the provious step
-    file:
-      path: /leondir1
-      state: directory
-  - name: Install apache httpd  (state=present is optional)
+  - name: Install nginx
     apt:
-      name: apache2
-      state: present 
-    register: apachevar1
-  - name: Make sure a service unit is running and enabled
-    systemd:
-      state: started
-      name: apache2
-      enabled: true
-  - name: debug message one
-    debug:
-      msg: "This is a simple message for info"
-  - name: debug message two
-    debug:
-      var: apachevar1.changed
-  - name: debug message 3
-    debug:
-      msg: "The apache install step showed a change"
-    when: apachevar1.changed
+      name: nginx
+      state: present
+      update_cache: true
