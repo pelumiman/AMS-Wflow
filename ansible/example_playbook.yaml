@@ -11,7 +11,7 @@
 
   - name: show nginx file info
     debug:
-      msg: {{nginx_info}}
+      msg: "{{nginx_info}}"
 
   - name: Copy nginx file over
     copy:
