@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'git@github.com:pelumiman/AMS-Wflow.git'
+                git 'https://github.com/pelumiman/AMS-Wflow.git'
             }
         }
         stage('Install Docker') {
