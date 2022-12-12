@@ -1,12 +1,12 @@
 pipeline {
     agent any
-    //     environment {
-    //     DB_PASSWORD = credentials('DATABASE_PASSWORD')
-    // }
+//        environment {
+//        DB_PASSWORD = credentials('DATABASE_PASSWORD')
+//    }
     stages {
         stage('Clone') {
             steps {
-                git 'https://gitlab.com/qacdevops/chaperootodo_client.git'
+                git 'git@github.com:pelumiman/AMS-Wflow.git'
             }
         }
         stage('Install Docker') {
@@ -14,8 +14,6 @@ pipeline {
             //and it doesn't need to happen on ever build in my environment
             steps {
             echo 'Nothing to Do'
-            echo 'Insert the install steps here'
-            exho 'this should trigger a build'
             }
         }
         stage('Deploy') {
