@@ -15,6 +15,7 @@ pipeline {
             steps {
             echo 'Nothing to Do'
             echo 'Insert the install steps here'
+            exho 'this should trigger a build'
             }
         }
         stage('Deploy') {
