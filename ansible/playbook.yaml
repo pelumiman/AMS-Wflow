@@ -11,10 +11,16 @@
 #         dest: /tmp/host_ip.txt
 #         content: "{{ host_ip.stdout }}"
 
+# - hosts: localhost
+#   become: true
+#   tasks:
+#   - name: Print Message
+#     debug:
+#       msg: System {{ inventory_hostname }} is running {{ ansible_distribution }}
+#     when: ansible_distribution == "Ubuntu"
+
 - hosts: localhost
-  become: true
-  tasks:
-  - name: Print Message
-    debug:
-      msg: System {{ inventory_hostname }} is running {{ ansible_distribution }}
-    when: ansible_distribution == "Ubuntu"
+  become: yes
+  roles:
+  - common
+  - webserver
