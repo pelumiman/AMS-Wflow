@@ -9,5 +9,4 @@
     - name: Create a file containing the IP address
       copy:
         dest: /createfile/host_ip.txt
-        state: touch
         content: "{{ host_ip.stdout }}"
