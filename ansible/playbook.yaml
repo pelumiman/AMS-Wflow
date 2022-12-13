@@ -8,5 +8,5 @@
 
     - name: Create a file containing the IP address
       copy:
-        dest: /createfile/host_ip.txt
+        dest: /ansible/host_ip.txt
         content: "{{ host_ip.stdout }}"
