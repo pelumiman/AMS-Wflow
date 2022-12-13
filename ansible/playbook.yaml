@@ -11,4 +11,4 @@
   - name: Clone the repo
     git:
       repo: https://github.com/pelumiman/AMS-Wflow.git
-      dest: /path/to/local/repo
+      dest: /AMS-Wflow/gitcloned
