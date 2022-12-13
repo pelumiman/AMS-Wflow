@@ -1,26 +1,14 @@
-- hosts: all
-  become: true
-  vars:                                                               # Add
-    path_to_nginx_conf: "./nginx.conf"                                # These
-    nginx_message: "Hello from Ansible on {{ inventory_hostname }}"   # Lines
+---
+- name: Clone a Git repo
+  hosts: localhost
   tasks:
-  - name: Install NGINX
+  - name: Install Git
+    become: yes
     apt:
-      name: nginx
-      state: latest
-      update_cache: true
-  - name: Start NGINX Service
-    service:
-      name: nginx
-      state: started
-  - name: Add nginx conf
-    template:
-      src: "{{ path_to_nginx_conf }}"
-      dest: /etc/nginx/nginx.conf
-    notify: Restart nginx
+      name: git
+      state: present
 
-  handlers:
-  - name: Restart nginx
-    service: 
-      name: nginx
-      state: restarted
+  - name: Clone the repo
+    git:
+      repo: https://github.com/pelumiman/AMS-Wflow.git
+      dest: /path/to/local/repo
