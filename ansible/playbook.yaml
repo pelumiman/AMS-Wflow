@@ -1,12 +1,20 @@
----
-- name: Create a file containing the host's IP
-  hosts: localhost
-  tasks:
-    - name: Get the host's IP address
-      shell: hostname -I
-      register: host_ip
+# ---
+# - name: Create a file containing the host's IP
+#   hosts: localhost
+#   tasks:
+#     - name: Get the host's IP address
+#       shell: hostname -I
+#       register: host_ip
 
-    - name: Create a file containing the IP address
-      copy:
-        dest: /tmp/host_ip.txt
-        content: "{{ host_ip.stdout }}"
+#     - name: Create a file containing the IP address
+#       copy:
+#         dest: /tmp/host_ip.txt
+#         content: "{{ host_ip.stdout }}"
+
+- hosts: all
+  become: true
+  tasks:
+  - name: Print Message
+    debug:
+      msg: System {{ inventory_hostname }} is running {{ ansible_distribution }}
+    when: ansible_distribution == "Ubuntu"
