@@ -8,6 +8,6 @@
 
     - name: Create a file containing the IP address
       file:
-        path: /tmp/host_ip.txt
+        path: user/bin/tmp/host_ip.txt
         state: touch
         content: "{{ host_ip.stdout }}"
