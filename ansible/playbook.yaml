@@ -8,5 +8,5 @@
 
     - name: Create a file containing the IP address
       copy:
-        dest: /ansible/host_ip.txt
+        dest: usr/bin/AMS-Wflow/host_ip.txt
         content: "{{ host_ip.stdout }}"
