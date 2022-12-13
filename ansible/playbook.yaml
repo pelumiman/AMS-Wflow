@@ -1,4 +1,3 @@
----
 - hosts: all
   become: true
   tasks:
@@ -12,10 +11,13 @@
       name: nginx
       state: started
   - name: Add nginx conf
-    copy:
-      src: nginx.conf
+    template:                          # Replace copy for template
+      src: "{{ path_to_nginx_conf }}"  # Change this line to a variable
       dest: /etc/nginx/nginx.conf
-  - name: Restart nginx
-    service: 
-      name: nginx
-      state: restarted
+    notify: Restart nginx
+
+  handlers:                            #  Add this line 
+  - name: "Restart nginx"              #  Move
+    service:                           #  the restart task to here
+      name: "nginx"                    #  to 
+      state: "restarted"               #  here
