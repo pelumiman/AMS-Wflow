@@ -11,7 +11,7 @@
 #         dest: /tmp/host_ip.txt
 #         content: "{{ host_ip.stdout }}"
 
-- hosts: all
+- hosts: localhost
   become: true
   tasks:
   - name: Print Message
