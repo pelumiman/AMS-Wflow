@@ -1,14 +1,13 @@
 ---
-- name: Clone a Git repo
+- name: Create a file containing the host's IP
   hosts: localhost
   tasks:
-  - name: Install Git
-    become: yes
-    apt:
-      name: git
-      state: present
+    - name: Get the host's IP address
+      shell: hostname -I
+      register: host_ip
 
-  - name: Clone the repo
-    git:
-      repo: https://github.com/pelumiman/AMS-Wflow.git
-      dest: usr/bin/AMS-Wflow/gitcloned
+    - name: Create a file containing the IP address
+      file:
+        path: /tmp/host_ip.txt
+        state: touch
+        content: "{{ host_ip.stdout }}"
